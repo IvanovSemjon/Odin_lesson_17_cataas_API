@@ -42,6 +42,17 @@ def open_new_window():
         lable = Label(new_window, image=img)
         lable.pack()
         lable.image = img
+
+
+def random_cat():
+    img = load_img("https://cataas.com/cat")
+    if img:
+        new_window = Toplevel(window)
+        new_window.title("Случайный котик")
+        new_window.geometry("600x480")
+        lable = Label(new_window, image=img)
+        lable.pack()
+        lable.image = img
     
 
 def exit():
@@ -69,7 +80,13 @@ tag_lable.pack()
 tag_combobox = ttk.Combobox(values=Allowed_tags)
 tag_combobox.pack()
 
-load_button = Button(text="Загрузить по тегу", command=open_new_window)
-load_button.pack()
+button_frame = Frame(window)
+button_frame.pack()
+
+load_button = Button(button_frame, text="Загрузить по тегу", command=open_new_window)
+load_button.pack(side=LEFT, padx=5)
+
+random_button = Button(button_frame, text="Случайный котик", command=random_cat)
+random_button.pack(side=LEFT, padx=5)
 
 window.mainloop()
